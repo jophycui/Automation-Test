@@ -5,29 +5,25 @@ import HTMLTestRunner
 import time
 from test_cases import *
 from common import send_email
-import test_cases.fast_selenium_back
 import cases_list
 from test_cases.return_config_data import ConfigData
 from selenium import webdriver
 import sys
 from test_cases import conf
+from common.log import Log
 sys.path.append("\\test_cases")
+from common import test_env
+
 
 #precondition
-OS, OS_VERSION,BROWSER,BROWSER_VERSION, FILENAME, EXECUTOR = conf.browserstack_info(sys.argv[1:])
+OS, OS_VERSION, BROWSER, BROWSER_VERSION, FILENAME, EXECUTOR = conf.browserstack_info(sys.argv[1:])
 HOST, PORT, mail_username, mail_password, to_addrs, folder = conf.email_info()
 proctor_url, password, proctor_name, access_url, full_name, grade = conf.login_info()
-
-#reset env
-# driver = webdriver.Remote(command_executor=ConfigData.EXECUTOR, desired_capabilities=ConfigData.desired_cap)
-# driver.get(access_url + "/demo/students/clear/deleteAllStudents")
-# driver.quit()
 
 
 
 # list that test cases that need to run
 alltestcases = cases_list.case_list()
-
 testunit = unittest.TestSuite()
 
 # add cases to suite
