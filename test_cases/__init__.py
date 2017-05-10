@@ -1,3 +1,8 @@
-import exam_login
-from test_data import exam_path
-
+import exam_math_g1
+import exam_math_g3
+import exam_physics_g1
+import exam_physics_g3
+import exam_math_physics_g1
+import exam_creativity
+import exam_ct
+import exam_ql
