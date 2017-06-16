@@ -10,6 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from all_exam_paths import *
 from config import ko
 from config import en
+from config import cn
 from common.log import Log
 from errors import *
 from selenium import webdriver
@@ -118,7 +119,13 @@ class RegisterPage(BasePage):
             raise WaitForElementError('Input proctor name failed')
 
     def select_university(self):
-        if int(self.BROWSER_VERSION) <= 9:
+
+        if str(self.BROWSER_VERSION) == 'None':
+            self.driver.find_element(*RegisterPageLocs.UNIVERSITY_SPAN).click()
+            uopts = self.driver.find_elements(*RegisterPageLocs.UNIVERSITY_AFTER_SPAN)
+            choice(uopts).click()
+
+        elif int(self.BROWSER_VERSION) <= 9:
             uopts = self.driver.find_elements(*RegisterPageLocs.UNIVERSITY_IE89)[1:]
             choice(uopts).click()
         else:
@@ -177,6 +184,9 @@ class StudenAccessPage(BasePage):
         elif exam_path == ExamPath_EN.random_g1:
             return en.AccessInfo.random_student_id
 
+        elif exam_path == ExamPath_CN.random_fa:
+            return cn.AccessInfo.random_faculty_id
+
     def input_student_id(self, exam_path):
         element = self.driver.find_element(*StudentAccessPageLocs.STUDENT_ID)
         element.clear()
@@ -231,6 +241,8 @@ class StudenAccessPage(BasePage):
 
         elif exam_path == ExamPath_EN.random_g1:
             element.send_keys(en.AccessInfo.random_token)
+        elif exam_path == ExamPath_CN.random_fa:
+            element.send_keys(cn.AccessInfo.random_faculty_token)
 
     def click_submit(self):
 

@@ -15,7 +15,7 @@ class ExamPath_EN(object):
     random_g1 = 'TBD_EN'
 
 class ExamPath_CN(object):
-    pass
+    random_fa = 'TBD_CN'
 
 
 class ExamPath_RU(object):

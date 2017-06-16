@@ -32,11 +32,15 @@ def log_file():
 
 
 def parse_args(argv):
-    parser = argparse.ArgumentParser(description='usage example:python run_all_en.py Windows 7 Ie 10')
-    parser.add_argument('OS', type=str, help='OS, Windows, Linux etc.')
-    parser.add_argument('OS_VERSION', type=str, help='OS version')
-    parser.add_argument('BROWSER', type=str, help='IE, Chrome, Firefox')
-    parser.add_argument('BROWSER_VERSION', type=str, help='For example, IE9, then 9 is browser version')
+    '''
+    THIS IS TEST
+    '''
+    parser = argparse.ArgumentParser(description='usage example: python run_all_en.py Windows 7 Ie | python run_all_en.py iPhone MAC "iPhone 6S Plus" --mobile' )
+    parser.add_argument('OS', type=str, help='browser | browserName')
+    parser.add_argument('OS_VERSION', type=str, help='os_version  | platform')
+    parser.add_argument('BROWSER', type=str, help='os | device ')
+    parser.add_argument('--BROWSER_VERSION', type=str, help=' browser_version (required for desktop | mobile can be null) ')
+    parser.add_argument('--mobile', action='store_true', help='If run with mobile')
 
     return parser.parse_args(argv)
 
@@ -47,13 +51,14 @@ def browserstack_info(argv):
     BROWSER = args.BROWSER
     OS_VERSION = args.OS_VERSION
     OS = args.OS
+    MOBILE = args.mobile
     FILENAME = sys.argv[0]
     EXECUTOR = 'http://jophycui2:dTuhA6cxuqCBdfWx8vC3@hub.browserstack.com:80/wd/hub'
-    return OS, OS_VERSION,BROWSER,BROWSER_VERSION, FILENAME, EXECUTOR
+    return OS, OS_VERSION,BROWSER,BROWSER_VERSION, FILENAME, EXECUTOR, MOBILE
 
 
 def login_info():
-    BROWSER_VERSION, BROWSER, OS_VERSION, PLATFORM, FILENAME, EXECUTOR = browserstack_info(sys.argv[1:])
+    BROWSER_VERSION, BROWSER, OS_VERSION, PLATFORM, FILENAME, EXECUTOR, MOBILE = browserstack_info(sys.argv[1:])
     demo_1 = "http://demo-1.highereducationlearning.org"
     demo_2 = "http://demo-2.highereducationlearning.org"
     demo_3 = "http://demo-3.highereducationlearning.org"
@@ -74,18 +79,3 @@ def login_info():
     grade = [0, 1, 2, 3]
 
     return proctor_url, password, proctor_name, access_url, full_name, grade[0]
-
-
-# local IE
-#
-# def browserstack_info(
-#     BROWSER_VERSION = sys.argv.pop(),
-#     BROWSER = sys.argv.pop(),
-#     OS_VERSION = sys.argv.pop(),
-#     PLATFORM = sys.argv.pop(),
-#     SERVER = {'chrome':'http://127.0.0.1:5555/wd/hub',
-#               'firefox':'http://127.0.0.1:4444/wd/hub',
-#               'internet explorer':'http://127.0.0.1:6666/wd/hub'}):
-#
-#     EXECUTOR=SERVER.get(BROWSER, 'Please check server configure info')
-#     return BROWSER_VERSION, BROWSER, OS_VERSION, PLATFORM, EXECUTOR

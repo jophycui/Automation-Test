@@ -9,7 +9,7 @@ import sys
 
 
 remote_test = False
-OS, OS_VERSION, BROWSER, BROWSER_VERSION, FILENAME, EXECUTOR = conf.browserstack_info(sys.argv[1:])
+OS, OS_VERSION, BROWSER, BROWSER_VERSION, FILENAME, EXECUTOR, MOBILE= conf.browserstack_info(sys.argv[1:])
 
 if remote_test:
     browser_stack = webdriver.Remote(command_executor=ConfigData.EXECUTOR, desired_capabilities=ConfigData.desired_cap)
@@ -27,7 +27,7 @@ class TestEnv(unittest.TestCase):
     def setUp(self):
         # self.logger = Log()
         # self.logger.debug('--------------------Start----------------------')
-        self.OS, self.OS_VERSION, self.BROWSER, self.BROWSER_VERSION, self.FILENAME, self.EXECUTOR = conf.browserstack_info(sys.argv[1:])
+        self.OS, self.OS_VERSION, self.BROWSER, self.BROWSER_VERSION, self.FILENAME, self.EXECUTOR, self.MOBILE = conf.browserstack_info(sys.argv[1:])
 
         if remote_test:
             self.driver = browser_stack

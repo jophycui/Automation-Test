@@ -45,8 +45,10 @@ class PublicMethod(BasePage):
             reg_main_page.input_proctor_name()
             reg_main_page.select_university()
             reg_main_page.return_student_bool(exam_path)
+            time.sleep(1)
             gen_main_page.capture_screenshot()
             reg_main_page.click_submit()
+
 
             # Register Session Page
             self.driver.implicitly_wait(5)
@@ -124,6 +126,11 @@ class PublicMethod(BasePage):
         except Exception as e:
             logger.info('select answer failed: {}'.format(e))
 
+    def faculty_cn(self):
+        fa_exam_page = CommonExamPage(self.driver)
+
+
+
     def creativity_answers(self):
         cr_exam_page = CommonExamPage(self.driver)
         gen_main_page = BasePage(self.driver)
@@ -190,8 +197,6 @@ class PublicMethod(BasePage):
                 else:
                     raise NoSuchExamPath('Exam path is not exist')
 
-    def only_count_exampath(self):
-        pass
 
     def select_answers_quantitative(self, calc=False):
         driver = self.driver

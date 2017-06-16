@@ -1,4 +1,0 @@
-uniqueStudentId  |  examPathId
-US01EE1201 | exampath1y1PM
-US01EE1201A | exampath1y1PM
-US01EE1201B | exampath1y1PM
