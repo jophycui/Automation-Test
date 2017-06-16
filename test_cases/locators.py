@@ -37,7 +37,8 @@ class StudentSurveyPageLocs(object):
     MAJOR_AFTER_SPAN = (By.CLASS_NAME, 'option')
     MAJOR_SELECTED = (By.XPATH, "//*[@id='level_field']/dd/div/div[1]")
     #GRADE_NOT_IE89 = (By.CLASS_NAME, 'option')
-    GRADE_NOT_IE89 = (By.CSS_SELECTOR,'div.selectize-dropdown-content > div.option')
+    #GRADE_NOT_IE89 = (By.CSS_SELECTOR,'div.selectize-dropdown-content > div.option')
+    GRADE_NOT_IE89 = (By.CSS_SELECTOR,'#level_field > dd > div > div.selectize-dropdown.single.form-control.selectize_enabled > div > div')
     SUBMIT_BTN = (By.NAME, 'singleClickButton')
 
 

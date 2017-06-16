@@ -261,7 +261,17 @@ class StudentSurvey(BasePage):
         element.send_keys(ConfigData.full_name)
 
     def select_major_grade(self):
-        if int(self.BROWSER_VERSION) <= 9:
+        if str(self.BROWSER_VERSION) == 'None':
+            self.driver.find_element(*StudentSurveyPageLocs.MAJOR_SPAN).click()
+            mopts = self.driver.find_elements(*StudentSurveyPageLocs.MAJOR_AFTER_SPAN)
+            choice(mopts).click()
+            self.driver.find_element(*StudentSurveyPageLocs.MAJOR_SELECTED).click()
+            lopts = self.driver.find_elements(*StudentSurveyPageLocs.GRADE_NOT_IE89)
+            time.sleep(1)
+            # grades = lopts[2:]
+            lopts[2:][self.grade].click()
+
+        elif int(self.BROWSER_VERSION) <= 9:
             mlopts = self.driver.find_element(*StudentSurveyPageLocs.MAJOR_IE89)
             major = mlopts[1:len(mlopts) - 3]
             choice(major).click()
@@ -300,7 +310,13 @@ class CommonExamPage(BasePage):
         return self
 
     def select_checkbox(self):
-        if int(self.BROWSER_VERSION) <= 9:
+        if str(self.BROWSER_VERSION) == 'None':
+            if self.wait_for_available(*ExamPageLocs.ANSWER_CHECKBOX_OTHER):
+                answers = self.driver.find_elements(*ExamPageLocs.ANSWER_CHECKBOX_OTHER)
+            else:
+                raise WaitForElementError('Find checkbox failed')
+
+        elif int(self.BROWSER_VERSION) <= 9:
             if self.wait_for_available(*ExamPageLocs.ANSWER_CHECKBOX_IE89):
                 answers = self.driver.find_elements(*ExamPageLocs.ANSWER_CHECKBOX_IE89)
             else:
