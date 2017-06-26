@@ -15,8 +15,7 @@ class ConfigData(object):
 
     screenshot_folder = conf.screenshot_info()
 
-  
-    capture_sreenshot = screenshot_folder + OS + OS_VERSION + "_" + BROWSER + str(BROWSER_VERSION) + "_" + "%s" + "_" + "Q" + "%s" + "_" + "%s" + ".png"
+    capture_sreenshot = screenshot_folder + "\\" + OS + OS_VERSION + "_" + BROWSER + str(BROWSER_VERSION) + "_" + "%s" + "_" + "Q" + "%s" + "_" + "%s" + ".png"
     
     proctor_url, password, proctor_name, access_url, full_name, grade = conf.login_info()
 

@@ -48,4 +48,4 @@ print "Writing Report"
 fp.close()
 
 #send email
-# send_email.send_email(HOST, PORT, mail_username, mail_password, to_addrs, folder)
+send_email.send_email(HOST, PORT, mail_username, mail_password, to_addrs, folder)

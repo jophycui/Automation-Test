@@ -4,7 +4,11 @@ import os
 from test_cases import conf
 
 log_path = conf.log_file()
-
+# logging.basicConfig(level=logging.INFO,
+#                 format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+#                 datefmt='%a, %d %b %Y %H:%M:%S',
+#                 filename='groupchat_%s.log'%logname,
+#                 filemode='a')
 
 class Log:
     def __init__(self):
@@ -21,7 +25,7 @@ class Log:
         ch = logging.StreamHandler()
         ch.setLevel(logging.INFO)
         # log format
-        formatter = logging.Formatter('\n %(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         fh.setFormatter(formatter)
         ch.setFormatter(formatter)
         # add handler to logger

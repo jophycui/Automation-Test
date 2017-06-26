@@ -8,7 +8,7 @@ from test_cases.pages import *
 import sys
 
 
-remote_test = True
+remote_test = False
 OS, OS_VERSION, BROWSER, BROWSER_VERSION, FILENAME, EXECUTOR, MOBILE= conf.browserstack_info(sys.argv[1:])
 
 if remote_test:

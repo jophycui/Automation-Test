@@ -10,24 +10,35 @@ Created on 29 May 2016
 import sys
 import random
 import argparse
+import os
 
+result_folder = "D:\\screenshot_report\\"
+
+def create_dirs(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 def email_info():
     HOST = "smtp.gmail.com"
-    PORT = "587"
+    PORT = "465"
     mail_username = "reportsenderserver@gmail.com"  # "reportsenderserver@gmail.com",
     mail_password = "test*321"
     to_addrs = "229871496@qq.com",  # stanford@br-clients.flowdock.com
-    folder = "D:\\screenshot_report\\"
+    folder = result_folder
     return HOST, PORT, mail_username, mail_password, to_addrs, folder
 
 
 def screenshot_info():
-    screenshot_folder = "D:\\screenshot_report\\"
+    screenshot_folder = create_dirs(result_folder + 'screenshots')
+    if screenshot_folder is None:
+        screenshot_folder = result_folder + "\\screenshots"
     return screenshot_folder
 
 def log_file():
-    log_folder = "D:\\screenshot_report\\"
+    log_folder = create_dirs(result_folder + 'logs')
+    if log_folder is None:
+        log_folder = result_folder + '\\logs'
+
     return log_folder
 
 
@@ -79,3 +90,4 @@ def login_info():
     grade = [0, 1, 2, 3]
 
     return proctor_url, password, proctor_name, access_url, full_name, grade[0]
+screenshot_info()
